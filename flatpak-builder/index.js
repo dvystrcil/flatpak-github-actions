@@ -253,7 +253,7 @@ const build = async (manifest, manifestPath, cacheHitKey, config) => {
   args.push('--state-dir', CACHE_PATH[0])
   args.push(config.buildDir, manifestPath)
 
-  await exec.exec('xvfb-run --auto-servernum flatpak-builder', args)
+  await exec.exec('xvfb-run', ['--auto-servernum', 'flatpak-builder', ...args])
 
   if (config.cacheBuildDir && (cacheKey !== cacheHitKey)) {
     await cache.saveCache(
